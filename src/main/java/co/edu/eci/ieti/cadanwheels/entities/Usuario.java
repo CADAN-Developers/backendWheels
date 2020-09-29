@@ -35,10 +35,10 @@ public class Usuario {
     }
     
     public Usuario() {
-        this.nombre = "Daniel";
-        this.apellidos = "Gomez";
-        this.clave = "cadan1234";
-        this.correo = "daniel@mail.com";
+        this.nombre = "admin";
+        this.apellidos = "eci";
+        this.clave = "admin";
+        this.correo = "admin@mail.com";
         this.telefono = "32045789";
         this.tipoDocumento = "CC";
         this.documento = "1020987945";
