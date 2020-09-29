@@ -32,7 +32,17 @@ public class Usuario {
         this.carne = carne;
     }
     
-    
+    public Usuario() {
+        this.nombre = "Daniel";
+        this.apellidos = "Gomez";
+        this.correo = "daniel@mail.com";
+        this.telefono = "32045789";
+        this.tipoDocumento = "CC";
+        this.documento = "1020987945";
+        this.universisdad = "ECI";
+        this.tipoUsuario = "Usuario";
+        this.carne = "2133714";
+    }
 
     public String getNombre() {
         return nombre;
