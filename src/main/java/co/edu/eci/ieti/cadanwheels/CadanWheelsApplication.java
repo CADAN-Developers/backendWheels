@@ -21,7 +21,7 @@ public class CadanWheelsApplication {
         //SpringApplication.run(RouletteApplication.class, args);
         //mongodb+srv://ieti:<ieti123>@cluster0.j78lp.mongodb.net/cadanwheels?retryWrites=true&w=majority
         SpringApplication app = new SpringApplication(CadanWheelsApplication.class);
-        app.setDefaultProperties(Collections.singletonMap("spring.data.mongodb.uri","mongodb+srv://ieti:<ieti123>@cluster0.j78lp.mongodb.net/cadanwheels?retryWrites=true&w=majority"));
+        app.setDefaultProperties(Collections.singletonMap("spring.data.mongodb.uri","mongodb+srv://ieti:ieti123@cluster0.j78lp.mongodb.net/cadanwheels?retryWrites=true&w=majority"));
         app.run(args);
     }
 } 

@@ -9,11 +9,13 @@ import co.edu.eci.ieti.cadanwheels.entities.Usuario;
 import co.edu.eci.ieti.cadanwheels.repositories.UserRepository;
 import co.edu.eci.ieti.cadanwheels.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Jairo Gomez
  */
+@Component
 public class UsuarioServiceImp implements UsuarioService { 
 
     @Autowired
@@ -22,9 +24,12 @@ public class UsuarioServiceImp implements UsuarioService {
     @Override
     public Boolean saveUser(Usuario user) {
         try {
+            Long cantidad = userRepository.count();
+            System.out.println(cantidad);
             userRepository.save(user);
             return true;
         } catch (Exception e) {
+            System.out.println(e.getStackTrace()[0]);
             return false;
         }
     }
