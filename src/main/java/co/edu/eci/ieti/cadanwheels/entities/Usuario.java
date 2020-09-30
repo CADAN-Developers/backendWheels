@@ -12,6 +12,7 @@ package co.edu.eci.ieti.cadanwheels.entities;
 public class Usuario {
     private String nombre;
     private String apellidos;
+    private String clave;
     private String correo;
     private String telefono;
     private String tipoDocumento;
@@ -20,9 +21,10 @@ public class Usuario {
     private String tipoUsuario;
     private String carne;
 
-    public Usuario(String nombre, String apellidos, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
+    public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.clave = clave;
         this.correo = correo;
         this.telefono = telefono;
         this.tipoDocumento = tipoDocumento;
@@ -32,7 +34,18 @@ public class Usuario {
         this.carne = carne;
     }
     
-    
+    public Usuario() {
+        this.nombre = "admin";
+        this.apellidos = "eci";
+        this.clave = "admin";
+        this.correo = "admin@mail.com";
+        this.telefono = "32045789";
+        this.tipoDocumento = "CC";
+        this.documento = "1020987945";
+        this.universisdad = "ECI";
+        this.tipoUsuario = "Usuario";
+        this.carne = "2133714";
+    }
 
     public String getNombre() {
         return nombre;
@@ -50,6 +63,14 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+   
     public String getCorreo() {
         return correo;
     }
