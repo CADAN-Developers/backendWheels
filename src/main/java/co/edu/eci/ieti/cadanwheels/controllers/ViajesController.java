@@ -48,10 +48,39 @@ public class ViajesController {
         return vS.getRealizadosbyId(id, pasajero);
     }
 
+    @GetMapping("/EnCursoPas/{pasajero}")
+    public Viaje getEnCursoPas(@PathVariable String pasajero) {
+        return vS.getEnCursoPas(pasajero);
+    }
+
+    @GetMapping("/EnCursoCon/{conductor}")
+    public List<Viaje> getEnCursoCon(@PathVariable String conductor) {
+        return vS.getEnCursoCod(conductor);
+    }
+
+    @GetMapping("/AgenadosPas/{pasajero}")
+    public List<Viaje> getAgendosPas(@PathVariable String pasajero) {
+        return vS.getAgendadosPas(pasajero);
+    }
+
+    @GetMapping("/AgenadosPas/{id}/{pasajero}")
+    public Viaje getAgendosPasbyId(@PathVariable int id, @PathVariable String pasajero) {
+        return vS.getAgendadobyIdPas(id, pasajero);
+    }
+
+    @GetMapping("/AgenadosCon/{conductor}")
+    public List<Viaje> getAgendosCon(@PathVariable String conductor) {
+        return vS.getAgendadosCon(conductor);
+    }
+
+    @GetMapping("/AgenadosCon/{id}/{conductor}")
+    public Viaje getAgendosConbyId(@PathVariable int id, @PathVariable String conductor) {
+        return vS.getAgendadobyIdCon(id, conductor);
+    }
+
     @PostMapping("/AddViaje")
     public void addViaje(@RequestBody Viaje viaje) {
         vS.addViaje(viaje);
-
     }
 
     @PutMapping("/UpdateViaje/{id}/{conductor}")

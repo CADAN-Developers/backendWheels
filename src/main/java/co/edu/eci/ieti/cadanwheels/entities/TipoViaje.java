@@ -4,5 +4,6 @@ public enum TipoViaje {
     OFRECIDO,
     COMPLETADO,
     REALIZADO,
-    EN_CURSO
+    EN_CURSO,
+    AGENDADO
 }

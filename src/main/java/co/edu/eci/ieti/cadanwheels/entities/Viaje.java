@@ -8,18 +8,16 @@ public class Viaje {
     private int idViaje;
     private String pasajero;
     private String conductor;
-    private String Ruta;
-    private String descripcion;
+    private String ruta;
     private int costo;
     private int calificacion;
     private TipoViaje tipoViaje;
 
-    public Viaje(int idViaje, String pasajero, String conductor, String ruta, String descripcion, int costo, int calificacion, TipoViaje tipoViaje) {
+    public Viaje(int idViaje, String pasajero, String conductor, String ruta,  int costo, int calificacion, TipoViaje tipoViaje) {
         this.idViaje = idViaje;
         this.pasajero = pasajero;
         this.conductor = conductor;
-        Ruta = ruta;
-        this.descripcion = descripcion;
+        this.ruta = ruta;
         this.costo = costo;
         this.calificacion = calificacion;
         this.tipoViaje = tipoViaje;
@@ -50,19 +48,11 @@ public class Viaje {
     }
 
     public String getRuta() {
-        return Ruta;
+        return ruta;
     }
 
     public void setRuta(String ruta) {
-        Ruta = ruta;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.ruta = ruta;
     }
 
     public int getCosto() {
