@@ -13,8 +13,13 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
      * @param email direccion ha buscar el usuario
      * @return  El objeto usuario con el usuario inscrito
      */
+
     public List<Viaje> findByConductor(String conductor);
 
     public List<Viaje> findByPasajero(String pasajero);
+
+    public Viaje findByIdViaje (int viaje);
+
+    public void deleteByIdViaje (int viaje);
 
 }

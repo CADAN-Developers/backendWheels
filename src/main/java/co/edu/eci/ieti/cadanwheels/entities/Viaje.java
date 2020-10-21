@@ -2,6 +2,7 @@ package co.edu.eci.ieti.cadanwheels.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 public class Viaje {
 
@@ -12,22 +13,22 @@ public class Viaje {
     private int costo;
     private int calificacion;
     private TipoViaje tipoViaje;
+    private Date fecha;
 
-    public Viaje(int idViaje, String pasajero, String conductor, String ruta,  int costo, int calificacion, TipoViaje tipoViaje) {
-        this.idViaje = idViaje;
-        this.pasajero = pasajero;
+    public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje) {
         this.conductor = conductor;
         this.ruta = ruta;
         this.costo = costo;
         this.calificacion = calificacion;
         this.tipoViaje = tipoViaje;
+        this.fecha = new Date();
     }
 
     public int getidViaje() {
         return idViaje;
     }
 
-    public void setId(int id) {
+    public void setIdViaje(int id) {
         this.idViaje = id;
     }
 
@@ -78,4 +79,13 @@ public class Viaje {
     public void setTipoViaje(TipoViaje tipoViaje) {
         this.tipoViaje = tipoViaje;
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
 }

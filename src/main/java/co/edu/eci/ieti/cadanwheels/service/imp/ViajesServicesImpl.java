@@ -5,6 +5,7 @@ import co.edu.eci.ieti.cadanwheels.entities.Viaje;
 import co.edu.eci.ieti.cadanwheels.repositories.ViajesRepository;
 import co.edu.eci.ieti.cadanwheels.service.ViajesServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +19,26 @@ public class ViajesServicesImpl implements ViajesServices {
 
     @Override
     public List<Viaje> findAll() {
-        return vR.findAll();
+        return  vR.findAll(Sort.by(Sort.Direction.ASC, "idViaje"));
+        //return vR.findAll();
+    }
+
+    @Override
+    public Viaje findById(int id) {
+        return vR.findByIdViaje(id);
+    }
+
+    @Override
+    public List<Viaje> findAllOfrecidos() {
+        List<Viaje> todos = findAll();
+        List<Viaje> ofrecidos = new ArrayList<>();
+        for (Viaje v: todos){
+            if(v.getTipoViaje().equals(TipoViaje.OFRECIDO)){
+                ofrecidos.add(v);
+            }
+        }
+        return ofrecidos;
+
     }
 
     @Override
@@ -34,18 +54,6 @@ public class ViajesServicesImpl implements ViajesServices {
         return ofrecidos;
     }
 
-    @Override
-    public Viaje getOfrecidobyId(int id, String conductor) {
-        List<Viaje> viajesCon = vR.findByConductor(conductor);
-        Viaje actual = null;
-        for (Viaje v: viajesCon){
-            if(v.getTipoViaje().equals(TipoViaje.OFRECIDO) && v.getidViaje()==id){
-                actual = v;
-                break;
-            }
-        }
-        return actual;
-    }
 
     @Override
     public List<Viaje> getCompletados(String conductor) {
@@ -60,25 +68,13 @@ public class ViajesServicesImpl implements ViajesServices {
         return completados;
     }
 
-    @Override
-    public Viaje getCompletadosbyId(int id, String conductor) {
-        List<Viaje> viajesCon = vR.findByConductor(conductor);
-        Viaje actual = null;
-        for (Viaje v: viajesCon){
-            if(v.getTipoViaje().equals(TipoViaje.COMPLETADO) && v.getidViaje()==id){
-                actual = v;
-                break;
-            }
-        }
-        return actual;
-    }
 
     @Override
     public List<Viaje> getRealizados(String pasajero) {
         List<Viaje> viajesPas = vR.findByPasajero(pasajero);
         List<Viaje> realizados = new ArrayList<>();
         for (Viaje v : viajesPas) {
-            if (v.getTipoViaje().equals(TipoViaje.REALIZADO)) {
+            if (v.getTipoViaje().equals(TipoViaje.COMPLETADO)) {
                 realizados.add(v);
             }
         }
@@ -86,18 +82,6 @@ public class ViajesServicesImpl implements ViajesServices {
     }
 
 
-    @Override
-    public Viaje getRealizadosbyId(int id, String pasajero) {
-        List<Viaje> viajesPas = vR.findByPasajero(pasajero);
-        Viaje actual = null;
-        for (Viaje v: viajesPas){
-            if(v.getTipoViaje().equals(TipoViaje.REALIZADO) && v.getidViaje()==id){
-                actual = v;
-                break;
-            }
-        }
-        return actual;
-    }
 
     @Override
     public List<Viaje> getEnCursoCod(String conductor) {
@@ -136,18 +120,6 @@ public class ViajesServicesImpl implements ViajesServices {
         return agendados;
     }
 
-    @Override
-    public Viaje getAgendadobyIdPas(int id, String pasajero) {
-        List<Viaje> viajesPas = vR.findByPasajero(pasajero);
-        Viaje actual = null;
-        for (Viaje v: viajesPas){
-            if(v.getTipoViaje().equals(TipoViaje.AGENDADO) && v.getidViaje()==id){
-                actual = v;
-                break;
-            }
-        }
-        return actual;
-    }
 
     @Override
     public List<Viaje> getAgendadosCon(String conductor) {
@@ -161,32 +133,31 @@ public class ViajesServicesImpl implements ViajesServices {
         return agendados;
     }
 
-    @Override
-    public Viaje getAgendadobyIdCon(int id, String conductor) {
-        List<Viaje> viajesCon = vR.findByConductor(conductor);
-        Viaje actual = null;
-        for (Viaje v: viajesCon){
-            if(v.getTipoViaje().equals(TipoViaje.AGENDADO) && v.getidViaje()==id){
-                actual = v;
-                break;
-            }
-        }
-        return actual;
-    }
 
     @Override
     public void addViaje(Viaje viaje) {
-        vR.save(viaje);
-
+        List<Viaje> viajes = vR.findAll(Sort.by(Sort.Direction.ASC, "idViaje"));
+        if (viajes.size() == 0){
+            viaje.setIdViaje(1);
+        }else {
+            Viaje ultimo = viajes.get(viajes.size() - 1);
+            viaje.setIdViaje(ultimo.getidViaje() + 1);
+        }
+        vR.insert(viaje);
     }
 
     @Override
-    public Viaje updateViaje(Viaje viaje) {
-        return null;
+    public void updateViaje(Viaje viaje, int id) {
+        if (findById(id)!= null){
+            deleteViaje(id);
+            vR.save(viaje);
+        }
     }
 
     @Override
-    public void deleteViaje(int id, String conductor) {
+    public void deleteViaje(int id) {
+        vR.deleteByIdViaje(id);
+
 
     }
 
