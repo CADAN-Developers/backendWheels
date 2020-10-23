@@ -14,14 +14,16 @@ public class Viaje {
     private int calificacion;
     private TipoViaje tipoViaje;
     private Date fecha;
+    private int cupos;
 
-    public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje) {
+    public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje,int cupos) {
         this.conductor = conductor;
         this.ruta = ruta;
         this.costo = costo;
         this.calificacion = calificacion;
         this.tipoViaje = tipoViaje;
         this.fecha = new Date();
+        this.cupos = cupos;
     }
 
     public int getidViaje() {
@@ -88,4 +90,11 @@ public class Viaje {
         this.fecha = fecha;
     }
 
+    public int getCupos() {
+        return cupos;
+    }
+
+    public void setCupos(int cupos) {
+        this.cupos = cupos;
+    }
 }
