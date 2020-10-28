@@ -9,33 +9,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.eci.ieti.cadanwheels.entities.Vehiculo;
 import co.edu.eci.ieti.cadanwheels.service.VehiculoService;
 
-@Controller
+@RestController
 public class VehiculoController {
 
     @Autowired
     private VehiculoService service;
 
-    
+   
+
     @PostMapping("/AddVehiculo")
     public boolean addVehiculo(@RequestBody Vehiculo vehiculo) {
         return service.addVehiculoConductor(vehiculo);
 
     }
-    @DeleteMapping("/DeleteVehiculo/{placa}")
-    public boolean deleteVehiculo(@PathVariable String placa) {
+    @DeleteMapping("/DeleteVehiculo")
+    public boolean deleteVehiculo(@RequestParam String placa) {
         return service.deleteVehiculoConductor(placa);
     }
-    @PostMapping("/UpdateVehiculo/{placa}")
-    public boolean updateVehiculoConductor(@PathVariable String placa, @RequestBody Vehiculo vehiculo){
+    @PostMapping("/UpdateVehiculo")
+    public boolean updateVehiculoConductor(@RequestParam String placa, @RequestBody Vehiculo vehiculo){
         return service.updateVehiculoConductor(placa, vehiculo);
     }
     
-    @GetMapping("/VehiculosConductor/{conductor}")
-    public List<Vehiculo> getVehiculosConductor(@PathVariable String conductor) {
+    @GetMapping("/getVehiculos")
+    public List<Vehiculo> getVehiculosConductor(@RequestParam String conductor) {
         return service.getVehiculosConductor(conductor);
     }
 

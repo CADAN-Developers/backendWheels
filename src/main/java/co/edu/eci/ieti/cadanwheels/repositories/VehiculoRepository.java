@@ -17,10 +17,10 @@ public interface VehiculoRepository  extends MongoRepository<Vehiculo, String>{
     
     /**
      * Encuentra los vehiculos por correo 
-     * @param email direccion a buscar el usuario
+     * @param correoDueño direccion a buscar el usuario
      * @return  lista de vehiculos del conductor
      */
-    public List<Vehiculo> findByCorreo(String correo);
+    public List<Vehiculo> findByCorreoDueño(String correoDueño);
 
     /**
      * Busca el vehiculo por la placa
@@ -34,7 +34,7 @@ public interface VehiculoRepository  extends MongoRepository<Vehiculo, String>{
      * @param placa placa del vehiculo
      * @return confimación de si se pudo hacer
      */
-    public boolean deleteByPlaca(String placa);
+    public void deleteByPlaca(String placa);
 
     
 }

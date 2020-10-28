@@ -3,12 +3,13 @@ package co.edu.eci.ieti.cadanwheels.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import co.edu.eci.ieti.cadanwheels.entities.Vehiculo;
 import co.edu.eci.ieti.cadanwheels.repositories.VehiculoRepository;
 import co.edu.eci.ieti.cadanwheels.service.VehiculoService;
 
-
+@Component
 public class VehiculoServiceImp implements VehiculoService {
 
     @Autowired
@@ -16,7 +17,7 @@ public class VehiculoServiceImp implements VehiculoService {
 
     @Override
     public List<Vehiculo> getVehiculosConductor(String conductor) {
-        return repo.findByCorreo(conductor);
+        return repo.findByCorreoDueño(conductor);
     }
 
    
@@ -42,7 +43,13 @@ public class VehiculoServiceImp implements VehiculoService {
 
     @Override
     public boolean deleteVehiculoConductor(String placa) {
-        return repo.deleteByPlaca(placa);
+        boolean res=true;
+        try{
+            repo.deleteByPlaca(placa);
+        }catch(Exception e){
+            res=false;
+        }
+        return res;
     }
 
     

@@ -1,8 +1,9 @@
 package co.edu.eci.ieti.cadanwheels.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Vehiculo {
+    String correoDueño;
     String placa;
     String marca;
     String color;
@@ -11,8 +12,9 @@ public class Vehiculo {
     Date fechaSoat;
     String soat;
 
-    public Vehiculo(String placa, String marca, String color, String matricula, int capacidad, Date fechaSoat,
+    public Vehiculo(String correoDueño, String placa, String marca, String color, String matricula, int capacidad, Date fechaSoat,
             String soat) {
+        this.correoDueño=correoDueño;
         this.placa = placa;
         this.marca = marca;
         this.color = color;
@@ -77,6 +79,14 @@ public class Vehiculo {
 
     public void setSoat(String soat) {
         this.soat = soat;
+    }
+
+    public String getCorreoDueño() {
+        return correoDueño;
+    }
+
+    public void setCorreoDueño(String correoDueño) {
+        this.correoDueño = correoDueño;
     }
 
     
