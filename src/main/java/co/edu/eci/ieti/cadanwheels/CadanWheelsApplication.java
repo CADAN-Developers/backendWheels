@@ -6,6 +6,10 @@
 package co.edu.eci.ieti.cadanwheels;
 
 import java.util.Collections;
+
+import co.edu.eci.ieti.cadanwheels.controllers.ViajesController;
+import co.edu.eci.ieti.cadanwheels.entities.TipoViaje;
+import co.edu.eci.ieti.cadanwheels.entities.Viaje;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +29,7 @@ public class CadanWheelsApplication {
         SpringApplication app = new SpringApplication(CadanWheelsApplication.class);
         app.setDefaultProperties(Collections.singletonMap("spring.data.mongodb.uri", "mongodb+srv://ieti:ieti123@cluster0.j78lp.mongodb.net/cadanwheels?retryWrites=true&w=majority"));
         app.run(args);
+
     }
 
     @Bean 
