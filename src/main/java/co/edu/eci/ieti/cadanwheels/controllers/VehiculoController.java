@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import co.edu.eci.ieti.cadanwheels.entities.Vehiculo;
 import co.edu.eci.ieti.cadanwheels.service.VehiculoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @CrossOrigin(origins = "*")
