@@ -1,6 +1,7 @@
 package co.edu.eci.ieti.cadanwheels.controllers;
 
 import co.edu.eci.ieti.cadanwheels.entities.Viaje;
+import co.edu.eci.ieti.cadanwheels.service.MapaService;
 import co.edu.eci.ieti.cadanwheels.service.ViajesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class ViajesController {
 
     @Autowired
     ViajesServices vS;
-
+    
     @GetMapping("/Viajes")
     public List<Viaje> findAll() {
         return vS.findAll();
@@ -65,9 +66,9 @@ public class ViajesController {
         return vS.getAgendadosCon(conductor);
     }
 
-
     @PostMapping("/AddViaje")
     public void addViaje(@RequestBody Viaje viaje) {
+        System.out.println(viaje);
         vS.addViaje(viaje);
     }
 

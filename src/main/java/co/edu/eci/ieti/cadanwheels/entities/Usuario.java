@@ -20,8 +20,9 @@ public class Usuario {
     private String universisdad;
     private String tipoUsuario;
     private String carne;
-    private float saldo;
-
+    private Integer saldo;
+    private String foto;
+   
     public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -34,6 +35,22 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.carne = carne;
     }
+
+    public Usuario(String nombre, String apellidos, String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne, String foto) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.clave = clave;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
+        this.universisdad = universisdad;
+        this.tipoUsuario = tipoUsuario;
+        this.carne = carne;
+        this.foto = foto;
+    }
+    
+    
     
     public Usuario() {
         this.nombre = "admin";
@@ -128,11 +145,19 @@ public class Usuario {
         this.carne = carne;
     }
 
-    public float getSaldo() {
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public Integer getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(Integer saldo) {
         this.saldo = saldo;
     }
     
