@@ -22,7 +22,7 @@ public class Usuario {
     private String carne;
     private Integer saldo;
     private String foto;
-    
+   
     public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
         this.nombre = nombre;
         this.apellidos = apellidos;
