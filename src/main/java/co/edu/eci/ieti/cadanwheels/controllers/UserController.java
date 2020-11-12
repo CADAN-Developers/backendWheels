@@ -49,8 +49,7 @@ public class UserController {
     @Autowired
     UsuarioServiceImp UsuarioService;
     
-
-    /**
+ /**
      * Metodo para permitir obtener todos los usuario
      * 
      * @return lista de usuarios
@@ -69,29 +68,8 @@ public class UserController {
         }
     }
 
-   
-    /**
-     * Metodo para permitir obtener un usuario especifico
-     * 
-     * @return usuario
-     */
-    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/{correo}" })
-    @ResponseBody
-    public ResponseEntity<?> findByCorreo(@PathVariable("correo") String correo) {
-        try {
-            System.out.println("Consultando usuario: " + correo);
-           
-            Usuario consulUser = UsuarioService.findByCorreo(correo);
-
-            return new ResponseEntity<>(consulUser, HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
-                    HttpStatus.NOT_FOUND);
-        }
-    }
-
-    /**
+    
+   /**
      * Metodo para permitir guardar un usuario nuevo
      * 
      * @return El estado de la peticion HTTP
@@ -125,8 +103,33 @@ public class UserController {
         }
     }
 
+   
+    /**
+     * Metodo para permitir obtener un usuario especifico
+     * 
+     * @return usuario
+     */
+    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/{correo}" })
+    @ResponseBody
+    public ResponseEntity<?> findByCorreo(@PathVariable("correo") String correo) {
+        try {
+            System.out.println("Consultando usuario: " + correo);
+           
+            Usuario consulUser = UsuarioService.findByCorreo(correo);
 
+            return new ResponseEntity<>(consulUser, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
+                    HttpStatus.NOT_FOUND);
+        }
+    }
 
+    /**
+     * Metodo para permitir guardar un usuario nuevo
+     * 
+     * @return El estado de la peticion HTTP
+     */
     @GetMapping("/addUsers")
     @ResponseBody
     public String addUser() {
