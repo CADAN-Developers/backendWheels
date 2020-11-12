@@ -49,22 +49,6 @@ public class UserController {
 
     @Autowired
     UsuarioServiceImp UsuarioService;
-    
-    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/{correo}" })
-    @ResponseBody
-    public ResponseEntity<?> findByCorreo(@PathVariable("correo") String correo) {
-        try {
-            System.out.println("Consultando usuario: " + correo);
-           
-            Usuario consulUser = UsuarioService.findByCorreo(correo);
-
-            return new ResponseEntity<>(consulUser, HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
-                    HttpStatus.NOT_FOUND);
-        }
-    }
 
     
     @RequestMapping(method = RequestMethod.POST, path = { "usuarios/" })  
@@ -123,37 +107,6 @@ public class UserController {
      * 
      * @return El estado de la peticion HTTP
      */
-    @RequestMapping(method = RequestMethod.POST, path = { "usuarios/" })
-    public ResponseEntity<?> saveUser(@RequestBody String usuario) {
-        try {
-            System.out.println("Consultando usuario: ");
-            System.out.println(usuario);
-            
-            Gson gson = new Gson();
-            Usuario us = gson.fromJson(usuario, Usuario.class);
-
-            boolean consulta;
-
-            // verificar si existe el correo en base de datos
-            if(UsuarioService.findByCorreo(us.getCorreo()) == null){
-                // Agregar saldo en 0
-                us.setSaldo(0);
-
-                consulta = UsuarioService.saveUser(us);
-            } else {
-                consulta = false;
-            }
-            
-            return new ResponseEntity<>(consulta, HttpStatus.CREATED);
-        } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No se ha podido registrar el usuario",
-                    HttpStatus.NOT_FOUND);
-        }
-    }
-
-
-
     @GetMapping("/addUsers")
     @ResponseBody
     public String addUser() {
