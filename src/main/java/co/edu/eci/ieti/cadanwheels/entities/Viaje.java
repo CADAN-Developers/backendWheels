@@ -15,7 +15,9 @@ public class Viaje {
     private TipoViaje tipoViaje;
     private Date fecha;
     private int cupos;
+    private Mapa mapa;
 
+    
     public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje,int cupos) {
         this.conductor = conductor;
         this.ruta = ruta;
@@ -26,6 +28,29 @@ public class Viaje {
         this.cupos = cupos;
     }
 
+
+
+    public Viaje(int idViaje, String pasajero, String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje, Date fecha, int cupos, Mapa mapa) {
+        this.idViaje = idViaje;
+        this.pasajero = pasajero;
+        this.conductor = conductor;
+        this.ruta = ruta;
+        this.costo = costo;
+        this.calificacion = calificacion;
+        this.tipoViaje = tipoViaje;
+        this.fecha = fecha;
+        this.cupos = cupos;
+        this.mapa = mapa;
+    }
+
+    public Viaje() {
+    } 
+    
+    
+    
+    
+    
+    
     public int getidViaje() {
         return idViaje;
     }
@@ -97,4 +122,16 @@ public class Viaje {
     public void setCupos(int cupos) {
         this.cupos = cupos;
     }
+
+    public Mapa getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(Mapa mapa) {
+        this.mapa = mapa;
+    }
+
+    
+    
+    
 }
