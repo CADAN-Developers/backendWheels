@@ -22,4 +22,6 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
 
     public void deleteByIdViaje (int viaje);
 
+    public List<Viaje> findByTipoViaje(String tipoViaje);
+
 }

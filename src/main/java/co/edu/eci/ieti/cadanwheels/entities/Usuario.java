@@ -20,6 +20,7 @@ public class Usuario {
     private String universisdad;
     private String tipoUsuario;
     private String carne;
+    private float saldo;
 
     public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
         this.nombre = nombre;
@@ -125,6 +126,14 @@ public class Usuario {
 
     public void setCarne(String carne) {
         this.carne = carne;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
     }
     
     
