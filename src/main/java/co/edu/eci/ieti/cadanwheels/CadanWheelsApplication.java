@@ -37,8 +37,6 @@ public class CadanWheelsApplication {
         return new WebMvcConfigurer() { 
             @Override 
             public void addCorsMappings(CorsRegistry registry) { 
-                registry.addMapping("/logUser").allowedOrigins("http://localhost:3000");
-                registry.addMapping("/addViaje").allowedOrigins("http://localhost:3000");
                 registry.addMapping("api/v1/").allowedOrigins("http://localhost:3000");
             }
         };
