@@ -35,8 +35,8 @@ import java.util.logging.Logger;
  * @author Jairo Gomez
  */
 @Controller
-@CrossOrigin(origins = "http://localhost:3000", methods= {RequestMethod.GET,RequestMethod.POST})
-@RequestMapping(value = "/api/v1")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+// @RequestMapping(value = "/api/v1")
 public class UserController {
 
     @Autowired
