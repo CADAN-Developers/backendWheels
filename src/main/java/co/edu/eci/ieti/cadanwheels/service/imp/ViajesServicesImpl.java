@@ -30,13 +30,7 @@ public class ViajesServicesImpl implements ViajesServices {
 
     @Override
     public List<Viaje> findAllOfrecidos() {
-        List<Viaje> todos = findAll();
-        List<Viaje> ofrecidos = new ArrayList<>();
-        for (Viaje v: todos){
-            if(v.getTipoViaje().equals(TipoViaje.OFRECIDO)){
-                ofrecidos.add(v);
-            }
-        }
+        List<Viaje> ofrecidos = vR.findByTipoViaje("OFRECIDO");
         return ofrecidos;
 
     }
@@ -148,14 +142,38 @@ public class ViajesServicesImpl implements ViajesServices {
 
     @Override
     public void updateViaje(Viaje viaje, int id) {
-        if (findById(id)!= null){
+        Viaje actual = findById(id);
+        if (actual != null) {
             deleteViaje(id);
-            vR.save(viaje);
+            addViaje(viaje);
+            if (actual.getTipoViaje().equals(TipoViaje.OFRECIDO) && actual.getCupos() - 1 > 0) {
+                actual.setCupos(actual.getCupos() - 1);
+                vR.save(actual);
+            }
         }
     }
 
     @Override
     public void deleteViaje(int id) {
+        /*Viaje actual = findById(id);
+        boolean flag = true;
+        if (actual.getTipoViaje().equals(TipoViaje.AGENDADO)){
+            List<Viaje> viajes = getOfrecidos(actual.getConductor());
+            for (Viaje viaje:viajes){
+                if(viaje.getRuta().equals(actual.getRuta()) && viaje.getFecha().equals(actual.getFecha()) && viaje.getCosto() == actual.getCosto()){
+                    vR.deleteByIdViaje(viaje.getidViaje());
+                    viaje.setCupos(viaje.getCupos()+1);
+                    vR.save(viaje);
+                    flag = false;
+                }
+                }
+            if (flag){
+                Viaje nuevo = actual;
+                nuevo.setPasajero(null);
+                nuevo.setCupos(1);
+                addViaje(nuevo);
+            }
+        }else if(actual.getTipoViaje().equals(TipoViaje.OFRECIDO)*/
         vR.deleteByIdViaje(id);
 
 
