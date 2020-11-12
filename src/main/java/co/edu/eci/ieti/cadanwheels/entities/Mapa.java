@@ -15,12 +15,12 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
  */
 public class Mapa {
     
-    private Json origen;
-    private Json destino;
-    private ArrayList<Json> ruta;
+    private String origen;
+    private String destino;
+    private ArrayList<String> ruta;
     private Integer valor;
 
-    public Mapa(Json origen, Json destino, ArrayList<Json> ruta, Integer valor) {
+    public Mapa(String origen, String destino, ArrayList<String> ruta, Integer valor) {
         this.origen = origen;
         this.destino = destino;
         this.ruta = ruta;
@@ -30,27 +30,27 @@ public class Mapa {
     public Mapa() {
     }
 
-    public Json getOrigen() {
+    public String getOrigen() {
         return origen;
     }
 
-    public void setOrigen(Json origen) {
+    public void setOrigen(String origen) {
         this.origen = origen;
     }
 
-    public Json getDestino() {
+    public String getDestino() {
         return destino;
     }
 
-    public void setDestino(Json destino) {
+    public void setDestino(String destino) {
         this.destino = destino;
     }
 
-    public ArrayList<Json> getRuta() {
+    public ArrayList<String> getRuta() {
         return ruta;
     }
 
-    public void setRuta(ArrayList<Json> ruta) {
+    public void setRuta(ArrayList<String> ruta) {
         this.ruta = ruta;
     }
 
