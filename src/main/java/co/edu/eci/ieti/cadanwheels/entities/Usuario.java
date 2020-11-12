@@ -17,13 +17,13 @@ public class Usuario {
     private String telefono;
     private String tipoDocumento;
     private String documento;
-    private String universisdad;
+    private String universidad;
     private String tipoUsuario;
     private String carne;
     private Integer saldo;
     private String foto;
    
-    public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne) {
+    public Usuario(String nombre, String apellidos,String clave, String correo, String telefono, String tipoDocumento, String documento, String universidad, String tipoUsuario, String carne) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.clave = clave;
@@ -31,12 +31,12 @@ public class Usuario {
         this.telefono = telefono;
         this.tipoDocumento = tipoDocumento;
         this.documento = documento;
-        this.universisdad = universisdad;
+        this.universidad = universidad;
         this.tipoUsuario = tipoUsuario;
         this.carne = carne;
     }
 
-    public Usuario(String nombre, String apellidos, String clave, String correo, String telefono, String tipoDocumento, String documento, String universisdad, String tipoUsuario, String carne, String foto) {
+    public Usuario(String nombre, String apellidos, String clave, String correo, String telefono, String tipoDocumento, String documento, String universidad, String tipoUsuario, String carne, String foto) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.clave = clave;
@@ -44,7 +44,7 @@ public class Usuario {
         this.telefono = telefono;
         this.tipoDocumento = tipoDocumento;
         this.documento = documento;
-        this.universisdad = universisdad;
+        this.universidad = universidad;
         this.tipoUsuario = tipoUsuario;
         this.carne = carne;
         this.foto = foto;
@@ -60,7 +60,7 @@ public class Usuario {
         this.telefono = "32045789";
         this.tipoDocumento = "CC";
         this.documento = "1020987945";
-        this.universisdad = "ECI";
+        this.universidad = "ECI";
         this.tipoUsuario = "Usuario";
         this.carne = "2133714";
     }
@@ -121,12 +121,12 @@ public class Usuario {
         this.documento = documento;
     }
 
-    public String getUniversisdad() {
-        return universisdad;
+    public String getuniversidad() {
+        return universidad;
     }
 
-    public void setUniversisdad(String universisdad) {
-        this.universisdad = universisdad;
+    public void setuniversidad(String universidad) {
+        this.universidad = universidad;
     }
 
     public String getTipoUsuario() {
