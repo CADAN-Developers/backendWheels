@@ -26,12 +26,12 @@ public class Viaje {
         this.tipoViaje = tipoViaje;
         this.fecha = new Date();
         this.cupos = cupos;
+        this.mapa = new Mapa();
     }
 
 
 
-    public Viaje(int idViaje, String pasajero, String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje, Date fecha, int cupos, Mapa mapa) {
-        this.idViaje = idViaje;
+    public Viaje(String pasajero, String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje, Date fecha, int cupos, Mapa mapa) {
         this.pasajero = pasajero;
         this.conductor = conductor;
         this.ruta = ruta;

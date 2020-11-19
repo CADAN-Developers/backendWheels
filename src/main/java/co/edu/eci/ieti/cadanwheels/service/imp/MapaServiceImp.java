@@ -10,13 +10,17 @@ import co.edu.eci.ieti.cadanwheels.repositories.MapaRepository;
 import co.edu.eci.ieti.cadanwheels.service.MapaService;
 import java.util.List;
 import java.util.Optional;
-import javafx.collections.transformation.FilteredList;
+// esto requiere java 11
+// import javafx.collections.transformation.FilteredList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+
+
 
 /**
  *

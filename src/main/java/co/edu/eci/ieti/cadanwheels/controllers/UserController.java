@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,29 +49,37 @@ public class UserController {
     @Autowired
     UsuarioServiceImp UsuarioService;
     
-    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/{correo}" })
-    @ResponseBody
-    public ResponseEntity<?> findByCorreo(@PathVariable("correo") String correo) {
+ /**
+     * Metodo para permitir obtener todos los usuario
+     * 
+     * @return lista de usuarios
+     */
+    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/" })  
+    public ResponseEntity<?> getAllUsers() {
         try {
-            System.out.println("Consultando usuario: " + correo);
-           
-            Usuario consulUser = UsuarioService.findByCorreo(correo);
+            System.out.println("Retornando todos los usuarios: ");
+            
 
-            return new ResponseEntity<>(consulUser, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);  
+            return new ResponseEntity<>("No se ha podido retornar todos los usuarios",
                     HttpStatus.NOT_FOUND);
         }
     }
 
     
-    @RequestMapping(method = RequestMethod.POST, path = { "usuarios/" })  
+   /**
+     * Metodo para permitir guardar un usuario nuevo
+     * 
+     * @return El estado de la peticion HTTP
+     */
+    @RequestMapping(method = RequestMethod.POST, path = { "usuarios/" })
     public ResponseEntity<?> saveUser(@RequestBody String usuario) {
         try {
             System.out.println("Consultando usuario: ");
             System.out.println(usuario);
-
+            
             Gson gson = new Gson();
             Usuario us = gson.fromJson(usuario, Usuario.class);
 
@@ -87,11 +94,33 @@ public class UserController {
             } else {
                 consulta = false;
             }
-
+            
             return new ResponseEntity<>(consulta, HttpStatus.CREATED);
         } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);  
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("No se ha podido registrar el usuario",
+                    HttpStatus.NOT_FOUND);
+        }
+    }
+
+   
+    /**
+     * Metodo para permitir obtener un usuario especifico
+     * 
+     * @return usuario
+     */
+    @RequestMapping(method = RequestMethod.GET, path = { "usuarios/{correo}" })
+    @ResponseBody
+    public ResponseEntity<?> findByCorreo(@PathVariable("correo") String correo) {
+        try {
+            System.out.println("Consultando usuario: " + correo);
+           
+            Usuario consulUser = UsuarioService.findByCorreo(correo);
+
+            return new ResponseEntity<>(consulUser, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
                     HttpStatus.NOT_FOUND);
         }
     }
