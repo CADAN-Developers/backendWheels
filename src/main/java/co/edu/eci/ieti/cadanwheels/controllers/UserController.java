@@ -125,11 +125,6 @@ public class UserController {
         }
     }
 
-    /**
-     * Metodo para permitir guardar un usuario nuevo
-     * 
-     * @return El estado de la peticion HTTP
-     */
     @GetMapping("/addUsers")
     @ResponseBody
     public String addUser() {
