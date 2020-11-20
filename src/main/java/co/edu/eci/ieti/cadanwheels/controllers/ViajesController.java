@@ -27,9 +27,9 @@ public class ViajesController {
     @GetMapping("/ViajeOfrecido/{id}")
     public List<Viaje> findByOfrecido(@PathVariable int id) { return vS.findByOfrecido(id); }
 
-    @GetMapping("/ViajesOfrecidos")
-    public List<Viaje> findAllOfrecidos() {
-        return vS.findAllOfrecidos();
+    @GetMapping("/ViajesOfrecidos/{pasajero}")
+    public List<Viaje> findAllOfrecidos(@PathVariable String pasajero) {
+        return vS.findAllOfrecidos(pasajero);
     }
 
     @GetMapping("/Ofrecidos/{conductor}")

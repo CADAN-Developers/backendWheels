@@ -10,7 +10,7 @@ public interface ViajesServices {
     public List<Viaje> findAll();
     public Viaje findById(int id);
     public List<Viaje> findByOfrecido(int id);
-    public List<Viaje> findAllOfrecidos();
+    public List<Viaje> findAllOfrecidos(String pasajero);
     public List<Viaje> getOfrecidos(String conductor);
     public List<Viaje> getCompletados(String conductor);
     public List<Viaje> getRealizados(String pasajero);
