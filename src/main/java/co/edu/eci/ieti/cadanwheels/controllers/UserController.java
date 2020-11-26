@@ -9,6 +9,8 @@ import co.edu.eci.ieti.cadanwheels.entities.Usuario;
 import co.edu.eci.ieti.cadanwheels.service.UsuarioService;
 import co.edu.eci.ieti.cadanwheels.service.imp.UsuarioServiceImp;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,8 +36,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  *
@@ -57,14 +62,15 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, path = { "usuarios/" })  
     public ResponseEntity<?> getAllUsers() {
         try {
-            System.out.println("Retornando todos los usuarios: ");
-            
+            System.out.println("Consultando Usuarios...");
+            List<Usuario> usuarios = new ArrayList<>();
 
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            String data = new Gson().toJson(UsuarioService.getAll());
+
+            return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);  
-            return new ResponseEntity<>("No se ha podido retornar todos los usuarios",
-                    HttpStatus.NOT_FOUND);
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No se ha podido retornar los usuarios", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -122,6 +128,49 @@ public class UserController {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("No se ha podido retornar el usuario con e correo: " + correo,
                     HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @RequestMapping(method = RequestMethod.PUT, path = "usuarios")
+    public ResponseEntity<?> updateUser(@RequestBody String usuario) {
+        try {
+            System.out.println("Actualizando usuario: " + usuario);
+            Type listType = new TypeToken<Map<Integer, Usuario>>() {
+            }.getType();
+            Map<String, Usuario> result = new Gson().fromJson(usuario, listType);
+
+            // Obtener las llaves del Map
+            Object[] nameKeys = result.keySet().toArray();
+
+            Usuario us = result.get(nameKeys[0]);
+
+            boolean continuar = UsuarioService.updateUser(us);
+            if(continuar){
+                return new ResponseEntity<>(us, HttpStatus.ACCEPTED);
+            }else {
+                return new ResponseEntity<>("No se ha podido registrar el usuario",
+                HttpStatus.NOT_FOUND);
+            }
+
+            // System.out.println("Usuario: " + usuarioActual.getIdUsuario());
+            // System.out.println("Usuario: " + usuarioActual.getCorreo());
+
+
+            // us.setIdUser(userActual.getIdUser());
+            //     us.setUserBalance(userActual.getUserBalance());
+            //     us.setUserFeedback(userActual.getUserFeedback());
+            //     System.out.println("Usuario a guardar activo: " + us.getUserActive());
+
+            //     uService.updateUser(us);
+                
+            //     userActual.setUserImage(us.getUserImage());
+            //     System.out.println("Usuario a guardar img: " + us.getUserImage());
+            //     uService.updateUser(userActual);
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No se puede guardar los cambios, error servidor", HttpStatus.NOT_ACCEPTABLE);
         }
     }
 

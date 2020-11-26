@@ -5,11 +5,18 @@
  */
 package co.edu.eci.ieti.cadanwheels.entities;
 
+import org.springframework.data.annotation.Id;
+
+
 /**
  *
  * @author Jairo Gomez
  */
 public class Usuario {
+
+    @Id
+    public String idUsuario;
+    
     private String nombre;
     private String apellidos;
     private String clave;
@@ -63,6 +70,13 @@ public class Usuario {
         this.universidad = "ECI";
         this.tipoUsuario = "Usuario";
         this.carne = "2133714";
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {

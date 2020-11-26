@@ -11,6 +11,8 @@ import co.edu.eci.ieti.cadanwheels.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  *
  * @author Jairo Gomez
@@ -43,6 +45,38 @@ public class UsuarioServiceImp implements UsuarioService {
             System.out.println("error al  encontrar el usuario");
         }
         return usr;
+    }
+
+    @Override
+    public List<Usuario> getAll() {
+        List<Usuario> listaUsuarios = null;
+        try {
+            listaUsuarios = userRepository.findAll();
+            return listaUsuarios;
+        } catch (Exception ex) {
+            System.out.println("No se han podido obtener los usuarios");
+            return listaUsuarios;
+        }
+    }
+
+    @Override
+    public Boolean updateUser(Usuario usuario) {
+        Usuario usr = null;
+        try {
+            usr = userRepository.findByCorreo(usuario.getCorreo());
+            if(usr.getCorreo() != null && usr.getCorreo() != ""){
+                usuario.setIdUsuario(usr.getIdUsuario());
+                userRepository.save(usuario);
+                return true;
+            } else {
+                System.out.println("error usuario no encontrado");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("error al  encontrar el usuario");
+            return false;
+
+        }
     }
 
   
