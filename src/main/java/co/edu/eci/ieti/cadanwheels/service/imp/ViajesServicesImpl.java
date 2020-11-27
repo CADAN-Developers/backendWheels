@@ -171,20 +171,15 @@ public class ViajesServicesImpl implements ViajesServices {
         if (actual != null) {
             if (actual.getTipoViaje().equals(TipoViaje.OFRECIDO)) {
                 addViaje(viaje);
-                System.out.println("guardo en add");
                 vR.deleteByIdViaje(id);
-                System.out.println("elimino en ofrecido");
                 if (actual.getCupos() - 1 > 0) {
                     actual.setCupos(actual.getCupos() - 1);
                     vR.save(actual);
-                    System.out.println("agrego otra vez el ofrecido");
                 }
             }else{
                 vR.deleteByIdViaje(id);
-                System.out.println("elimino fuera de ofrecido");
                 viaje.setIdViaje(id);
                 vR.save(viaje);
-                System.out.println("guardo en save");
             }
         }
     }
