@@ -26,7 +26,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ServerEndpoint("/apiChat/{idViaje}")
-
 public class ChatEndPoint {
     
     private static final Logger logger = Logger.getLogger(ChatEndPoint.class.getName());
