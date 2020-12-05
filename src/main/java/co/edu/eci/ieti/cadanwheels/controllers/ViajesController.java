@@ -22,11 +22,14 @@ public class ViajesController {
     }
 
     @GetMapping("/Viaje/{id}")
-    public Viaje findAll(@PathVariable int id) { return vS.findById(id); }
+    public Viaje findById(@PathVariable int id) { return vS.findById(id); }
 
-    @GetMapping("/ViajesOfrecidos")
-    public List<Viaje> findAllOfrecidos() {
-        return vS.findAllOfrecidos();
+    @GetMapping("/ViajeOfrecido/{id}")
+    public List<Viaje> findByOfrecido(@PathVariable int id) { return vS.findByOfrecido(id); }
+
+    @GetMapping("/ViajesOfrecidos/{pasajero}")
+    public List<Viaje> findAllOfrecidos(@PathVariable String pasajero) {
+        return vS.findAllOfrecidos(pasajero);
     }
 
     @GetMapping("/Ofrecidos/{conductor}")

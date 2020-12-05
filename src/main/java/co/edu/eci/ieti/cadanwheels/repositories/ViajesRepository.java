@@ -24,4 +24,7 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
 
     public List<Viaje> findByTipoViaje(String tipoViaje);
 
+    public List<Viaje> findByOfrecido (int viaje);
+
+
 }

@@ -16,9 +16,10 @@ public class Viaje {
     private Date fecha;
     private int cupos;
     private Mapa mapa;
+    private int ofrecido;
 
     
-    public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje,int cupos) {
+    public Viaje(String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje,int cupos, int ofrecido) {
         this.conductor = conductor;
         this.ruta = ruta;
         this.costo = costo;
@@ -27,11 +28,12 @@ public class Viaje {
         this.fecha = new Date();
         this.cupos = cupos;
         this.mapa = new Mapa();
+        this.ofrecido = ofrecido;
     }
 
 
 
-    public Viaje(String pasajero, String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje, Date fecha, int cupos, Mapa mapa) {
+    public Viaje(String pasajero, String conductor, String ruta, int costo, int calificacion, TipoViaje tipoViaje, Date fecha, int cupos, Mapa mapa, int ofrecido) {
         this.pasajero = pasajero;
         this.conductor = conductor;
         this.ruta = ruta;
@@ -41,6 +43,7 @@ public class Viaje {
         this.fecha = fecha;
         this.cupos = cupos;
         this.mapa = mapa;
+        this.ofrecido = ofrecido;
     }
 
     public Viaje() {
@@ -131,7 +134,11 @@ public class Viaje {
         this.mapa = mapa;
     }
 
-    
-    
-    
+    public int getOfrecido() {
+        return ofrecido;
+    }
+
+    public void setOfrecido(int ofrecido) {
+        this.ofrecido = ofrecido;
+    }
 }
